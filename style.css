@@ -1,0 +1,1477 @@
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Oxygen, Ubuntu, Cantarell, sans-serif;
+  background-color: #000;
+  color: #fff;
+  line-height: 1.6;
+}
+a{
+  text-decoration: none;
+  color: white;
+}
+
+.container {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 0 20px;
+}
+
+/* Header */
+.header {
+  background-color: rgba(0, 0, 0, 0.95);
+  padding: 20px 0;
+  position: sticky;
+  top: 0;
+  z-index: 1000;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+.nav {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.logo {
+  font-size: 24px;
+  font-weight: bold;
+  color: #fff;
+  display: flex;
+}
+.logo img{
+  height: 60px;
+}
+.logo span{
+  font-size: 30px;
+  font-weight: 900;
+  padding-top: 10px;
+}
+.logo a{
+  text-decoration: none;
+  color: #fff;
+}
+
+.nav-menu {
+  display: flex;
+  list-style: none;
+  gap: 40px;
+}
+
+.nav-menu a {
+  color: #fff;
+  text-decoration: none;
+  font-size: 16px;
+  transition: color 0.3s;
+}
+
+.nav-menu a:hover {
+  color: #ff8c42;
+}
+
+.btn-primary {
+  /* Базовый стиль - сохраняем ваши цвета и форму */
+  background: linear-gradient(90deg, #ff8c42 0%, #ff6b35 100%);
+  color: #fff;
+  border: none;
+  padding: 14px 36px; /* Чуть больше паддинга для солидности */
+  border-radius: 12px; /* Более округлые углы */
+  cursor: pointer;
+  font-size: 18px; /* Более крупный шрифт */
+  font-weight: 700; /* Жирный текст */
+  letter-spacing: 0.5px;
+  
+  /* Важные стили для анимации */
+  position: relative;
+  overflow: hidden;
+  z-index: 1;
+  transition: all 0.4s cubic-bezier(0.25, 0.8, 0.25, 1); /* Гладкий переход */
+}
+
+/* Эффект свечения (Box Shadow) */
+.btn-primary:hover {
+  transform: translateY(-3px); /* Легкий подъем кнопки */
+  box-shadow: 0 12px 30px rgba(255, 107, 53, 0.7), /* Основной сияющий эффект */
+              0 0 0 4px rgba(255, 107, 53, 0.3); /* Пульсирующий контур */
+  z-index: 2;
+}
+
+/* 1. Эффект "Волны" или "Вспышки" при наведении (Псевдоэлемент) */
+.btn-primary::after {
+  content: '';
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  width: 0;
+  height: 0;
+  background: rgba(255, 255, 255, 0.2); /* Светлая, полупрозрачная вспышка */
+  border-radius: 50%;
+  transition: width 0.4s ease-out, height 0.4s ease-out; /* Анимация роста */
+  transform: translate(-50%, -50%);
+  z-index: 0;
+}
+
+/* 2. Активация "Вспышки" при наведении */
+.btn-primary:hover::after {
+  width: 300px; /* Быстрый рост вспышки */
+  height: 300px;
+  transition: width 0.5s ease-out, height 0.5s ease-out; 
+}
+/* 1. Анимация движения фона */
+@keyframes moving-gradient {
+  0% {
+    background-position: 0% 50%;
+  }
+  50% {
+    background-position: 100% 50%;
+  }
+  100% {
+    background-position: 0% 50%;
+  }
+}
+
+.btn-primary {
+  /* Базовый стиль */
+  color: #fff;
+  border: none;
+  padding: 14px 36px;
+  border-radius: 12px;
+  cursor: pointer;
+  font-size: 18px;
+  font-weight: 700;
+  letter-spacing: 0.5px;
+  
+  /* Стиль для градиента и анимации */
+  background: linear-gradient(
+    90deg, 
+    #ffaf7d 0%,  
+    #ec3f00 50%, 
+    #ffaf7d 100%
+  ); /* Расширенный градиент для движения */
+  background-size: 200% 100%; /* Увеличиваем размер фона */
+  
+  /* Непрерывная анимация градиента */
+  animation: moving-gradient 2s ease infinite; 
+  
+  /* Эффекты перехода */
+  transition: all 0.15s ease-in; /* Очень быстрый отклик на наведение */
+  transform: scale(1); /* Начальный размер */
+  box-shadow: 0 4px 15px rgba(255, 107, 53, 0.4);
+}
+
+/* 2. Быстрое изменение цвета и размера при наведении (Hover) */
+.btn-primary:hover {
+  /* Резкий сдвиг градиента и усиление цвета */
+  background: linear-gradient(90deg, #ff6b35 0%, #ff8c42 100%);
+  background-size: 100% 100%; /* Отключение движения градиента при наведении */
+  
+  /* Резкое увеличение и яркая тень */
+  transform: scale(1.05); /* Быстрый скачок размера */
+  box-shadow: 0 0 5px #fff,  /* Контрастная белая тень (эффект вспышки) */
+              0 0 25px #ff6b35, 
+              0 0 50px #ff8c42; /* Максимальное сияние */
+}
+
+/* 3. Эффект клика (Active) для максимальной активности */
+.btn-primary:active {
+  transform: scale(0.98); /* Кнопка "проваливается" при нажатии */
+  box-shadow: 0 2px 5px rgba(255, 107, 53, 0.2);
+  background: #ff4b3a; /* Смена на самый темный оттенок при удержании */
+}
+
+.hamburger {
+  display: none;
+  flex-direction: column;
+  cursor: pointer;
+  gap: 5px;
+}
+
+.hamburger span {
+  width: 25px;
+  height: 3px;
+  background: #fff;
+  border-radius: 3px;
+  transition: all 0.3s;
+}
+
+/* Hero Section */
+.hero {
+  padding: 80px 0;
+  background: linear-gradient(180deg, rgba(30, 20, 10, 0.8) 0%, rgba(0, 0, 0, 1) 100%);
+}
+
+.hero-content {
+  display: flex;
+  align-items: center;
+  gap: 60px;
+  margin-bottom: 60px;
+}
+
+.hero-text {
+  flex: 1;
+}
+
+.hero-text h1 {
+  font-size: 56px;
+  font-weight: 700;
+  line-height: 1.2;
+  margin-bottom: 24px;
+}
+
+.highlight {
+  color: #ff8c42;
+}
+
+.hero-text p {
+  font-size: 16px;
+  color: rgba(255, 255, 255, 0.7);
+  margin-bottom: 32px;
+  line-height: 1.8;
+}
+
+.hero-buttons {
+  display: flex;
+  gap: 20px;
+  justify-content: center;
+}
+
+.hero-image {
+  flex: 1;
+  position: relative;
+  text-align: center;
+  font-size: 18px;
+}
+
+
+
+.image-slider {
+  /* Базовый стиль контейнера */
+  position: relative;
+  width: 100%; /* Примерная ширина, адаптируйте под свои нужды */
+  height: auto; /* Высота подстраивается под контент */
+  /* margin: 20px; Отступы между слайдерами, если их несколько */
+  background: #2a2a2a; /* Темный фон для контраста */
+  border-radius: 15px;
+  overflow: hidden; /* Важно для эффекта "выдвижения" */
+  cursor: pointer;
+  
+  /* Начальные стили для анимации */
+  transform: scale(1) translateY(0);
+  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.3); /* Легкая тень */
+  transition: all 0.4s cubic-bezier(0.25, 0.8, 0.25, 1); /* Плавный переход */
+}
+
+/* Стили изображения внутри слайдера */
+.image-slider img {
+  width: 100%;
+  height: auto;
+  display: block; /* Убирает лишний пробел под изображением */
+  border-radius: 15px 15px 0 0; /* Закругляем только верхние углы */
+  transition: transform 0.4s ease-out; /* Анимация увеличения изображения */
+}
+
+/* Стили для текста под изображением */
+.image-slider span {
+  display: block;
+  padding: 15px 20px;
+  color: #f0f0f0; /* Светлый текст */
+  font-size: 1.1em;
+  font-weight: 600;
+  text-align: center;
+  transition: color 0.4s ease; /* Анимация изменения цвета текста */
+}
+
+/* 1. Эффект при наведении (Hover) - "Выдвижение" и "Сияние" */
+.image-slider:hover {
+  transform: scale(1.08) translateY(-10px); /* Увеличение и легкий подъем */
+  box-shadow: 0 15px 40px rgba(255, 107, 53, 0.7), /* Яркое оранжевое сияние */
+              0 0 0 5px rgba(255, 140, 66, 0.4); /* Дополнительный пульсирующий контур */
+  background: #333; /* Чуть светлее фон при наведении */
+}
+
+/* 2. Анимация изображения при наведении */
+.image-slider:hover img {
+  transform: scale(1.1); /* Изображение слегка увеличивается */
+}
+
+/* 3. Анимация текста при наведении */
+.image-slider:hover span {
+  color: #ff8c42; /* Текст становится оранжевым, соответствуя сиянию */
+}
+
+/* 4. Дополнительный "световой блик" при наведении (псевдоэлемент) */
+.image-slider::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: -100%; /* Начинается слева за пределами блока */
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(
+    90deg, 
+    transparent, 
+    rgba(255, 255, 255, 0.1), /* Легкий белый блик */
+    transparent
+  );
+  transition: left 0.6s ease-out; /* Анимация движения блика */
+}
+
+/* 5. Активация "светового блика" при наведении */
+.image-slider:hover::before {
+  left: 100%; /* Блик проезжает через весь блок */
+}
+
+.image-slider span {
+  display: block;
+  margin-top: 16px;
+  font-size: 30px;
+  color: rgba(255, 255, 255,);
+}
+
+.image-slider img {
+  width: 100%;
+  height: auto;
+  border-radius: 16px;
+}
+
+.slider-arrow {
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+  background: rgba(255, 140, 66, 0.8);
+  border: none;
+  color: #fff;
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+  cursor: pointer;
+  font-size: 24px;
+  transition: all 0.3s;
+}
+
+.slider-arrow:hover {
+  background: #ff8c42;
+  transform: translateY(-50%) scale(1.1);
+}
+
+.slider-prev {
+  left: -20px;
+}
+
+.slider-next {
+  right: -20px;
+}
+
+.hero-stats {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    max-width: 1000px; /* Ограничение ширины для аккуратного вида */
+    margin: 30px auto;
+    padding: 20px 40px;
+    background: rgba(0, 0, 0, 0.4); /* Полупрозрачный темный фон */
+    border-radius: 20px;
+    backdrop-filter: blur(10px); /* Эффект размытия (стекло) */
+    border: 1px solid rgba(255, 255, 255, 0.1); /* Легкий контур */
+    position: relative;
+}
+
+.stat-item {
+    text-align: center;
+    padding: 0 15px;
+    border-right: 1px solid rgba(255, 255, 255, 0.1); /* Разделитель */
+}
+
+.hero-stats .stat-item:last-of-type {
+    border-right: none; /* Убираем разделитель у последнего элемента */
+}
+
+.stat-item h3 {
+    font-size: 2.5em; /* Крупные, заметные цифры */
+    font-weight: 800;
+    color: #ff8c42; /* Ваш фирменный оранжевый цвет */
+    margin-bottom: 5px;
+    letter-spacing: 1px;
+    /* Анимация пульсации цифр (непрерывная) */
+    animation: pulsate-glow 2s ease-in-out infinite alternate; 
+}
+
+.stat-item p {
+    font-size: 0.9em;
+    color: #ccc;
+    text-transform: uppercase;
+    font-weight: 500;
+}
+
+.star-icon {
+    position: absolute;
+    top: -15px;
+    right: -15px;
+    font-size: 2em;
+    color: #ff6b35; /* Яркий акцентный цвет */
+    transform: rotate(15deg);
+    opacity: 0.8;
+}
+
+/* Анимация пульсации для цифр */
+@keyframes pulsate-glow {
+    from {
+        text-shadow: 0 0 5px rgba(255, 140, 66, 0.5);
+    }
+    to {
+        text-shadow: 0 0 15px #ff8c42, 0 0 25px rgba(255, 107, 53, 0.8);
+    }
+}
+
+.star-icon {
+  font-size: 48px;
+  color: #fff;
+}
+
+/* About Section */
+.about {
+  padding: 100px 0;
+  background: #000;
+}
+
+.section-title {
+  font-size: 48px;
+  font-weight: 700;
+  text-align: center;
+  margin-bottom: 60px;
+}
+
+/* ===================================== */
+/* 1. Общий макет и стили контейнера */
+/* ===================================== */
+.about-content {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    max-width: 1200px;
+    margin: 60px auto;
+    padding: 20px;
+}
+
+.about-images {
+    display: flex;
+    flex-wrap: wrap; /* Позволяет изображениям переноситься на новую строку на мобильных */
+    width: 50%; /* Изображения занимают половину ширины */
+    gap: 10px; /* Отступ между изображениями */
+    perspective: 1000px; /* Для 3D-эффектов */
+}
+
+.about-text {
+    width: 45%; /* Текст занимает другую половину */
+    padding-left: 40px;
+    color: #f0f0f0;
+}
+
+.about-text p {
+    margin-bottom: 20px;
+    line-height: 1.6;
+}
+
+/* ===================================== */
+/* 2. Стиль и анимация для каждого изображения */
+/* ===================================== */
+.about-image-item {
+    width: 250px; /* Каждое изображение занимает 50% от родителя (2x2 сетка) */
+    position: relative;
+    border-radius: 10px;
+    overflow: hidden;
+    cursor: pointer;
+    
+    /* Начальные трансформации и переходы */
+    transform: scale(1) translateZ(0);
+    transition: transform 0.4s cubic-bezier(0.25, 0.8, 0.25, 1), 
+                box-shadow 0.4s ease;
+}
+
+.about-image-item img {
+    display: block;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    transition: filter 0.4s ease;
+}
+
+/* Эффект Сияния и Выдвижения при Наведении */
+.about-image-item:hover {
+    /* Выдвижение (translateZ) и Увеличение (scale) */
+    transform: scale(1.1) translateZ(50px); 
+    z-index: 10; /* Поднимаем элемент над соседями */
+    
+    /* Яркое оранжевое сияние */
+    box-shadow: 0 15px 35px rgba(255, 107, 53, 0.8),
+                0 0 0 5px rgba(255, 140, 66, 0.5); 
+}
+
+.about-image-item:hover img {
+    filter: brightness(1.1); /* Изображение становится чуть ярче */
+}
+
+
+.about-text {
+  flex: 1;
+}
+
+.about-text p {
+  font-size: 16px;
+  color: rgba(255, 255, 255, 0.7);
+  margin-bottom: 20px;
+  line-height: 1.8;
+}
+
+.about-text .btn-primary {
+  margin-top: 20px;
+}
+
+/* Collections Section */
+.collections {
+  padding: 100px 0;
+  background: linear-gradient(180deg, #000 0%, rgba(20, 15, 10, 1) 100%);
+}
+
+.section-header {
+  text-align: center;
+  margin-bottom: 60px;
+}
+
+.section-subtitle {
+  font-size: 16px;
+  color: rgba(255, 255, 255, 0.6);
+  margin-top: 16px;
+}
+
+.collections-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 30px;
+  margin-bottom: 60px;
+}
+
+.collection-card {
+  background: rgba(255, 255, 255, 0.05);
+  border-radius: 16px;
+  padding: 20px;
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  transition: transform 0.3s, box-shadow 0.3s;
+}
+
+.collection-card:hover {
+  transform: translateY(-8px);
+  box-shadow: 0 12px 30px rgba(255, 140, 66, 0.2);
+}
+
+.card-header {
+  margin-bottom: 12px;
+  text-align: center;
+}
+
+.creator-info {
+  display: flex;
+  flex-direction: column;
+  font-size: 20px;
+}
+
+.creator-label {
+  color: rgba(255, 255, 255, 0.5);
+}
+
+.creator-name {
+  color: #ff8c42;
+  font-weight: 600;
+}
+
+.card-image {
+  margin-bottom: 16px;
+}
+
+.card-image img {
+  width: 100%;
+  height: auto;
+  border-radius: 12px;
+}
+
+.card-footer{
+  text-align: center;
+}
+
+.card-footer h3 {
+  font-size: 20px;
+  margin-bottom: 8px;
+}
+/* ===================================== */
+/* 1. Анимация движения градиента */
+/* ===================================== */
+@keyframes fast-gradient-shift {
+  0% {
+    background-position: 0% 50%;
+  }
+  100% {
+    background-position: 100% 50%;
+  }
+}
+
+.card-footer h3 {
+  /* Базовый стиль - делаем элемент похожим на кнопку */
+  display: inline-block; /* Занимает только необходимую ширину */
+  text-align: center;
+  margin: 15px auto 0;
+  padding: 10px 25px;
+  border-radius: 50px; /* Сильно скругленные края */
+  cursor: pointer;
+  font-size: 1.1em;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+  color: #fff;
+  
+  /* Фон с быстро меняющимся градиентом */
+  background: linear-gradient(
+    90deg, 
+    #ffa281,  /* Яркий Оранжевый */
+    #ff4b3a,  /* Красный Акцент */
+    #ee2000,  /* Светлый Оранжевый */
+    #ffc2ab   /* Снова Яркий Оранжевый */
+  ); 
+  
+  background-size: 300% 100%; /* Увеличиваем размер фона для движения */
+  
+  /* Применяем анимацию движения */
+  animation: fast-gradient-shift 1s linear infinite alternate; /* Очень быстрая смена */
+  
+  /* Эффекты перехода для hover */
+  transition: all 1s cubic-bezier(0.25, 0.8, 0.25, 1);
+  box-shadow: 0 4px 15px rgba(255, 107, 53, 0.5);
+  
+  /* Для эффекта внутреннего сияния */
+  position: relative;
+  overflow: hidden;
+}
+
+/* 2. Эффект "Пульсации Света" при наведении (Hover) */
+.card-footer h3:hover {
+  transform: scale(1.08); /* Кнопка "выдвигается" */
+  box-shadow: 0 0 5px #fff,  /* Контрастная белая вспышка */
+              0 0 25px #ff6b35, 
+              0 0 50px #ff8c42; /* Максимальное сияние */
+  /* Немного замедляем движение градиента при наведении для акцента */
+  animation: fast-gradient-shift 3s ease-in-out infinite alternate;
+}
+
+/* 3. Эффект "Волны/Блика" при клике (Active) */
+.card-footer h3:active {
+  transform: scale(0.95); /* Кнопка "проваливается" */
+  box-shadow: 0 1px 10px rgba(0, 0, 0, 0.5);
+}
+
+.creator-by {
+  font-size: 14px;
+  color: rgba(255, 255, 255, 0.5);
+}
+
+.creator-by span {
+  color: #ff8c42;
+}
+
+.section-footer {
+  text-align: center;
+}
+
+/* Creators Section */
+.creators {
+  padding: 100px 0;
+  background: #000;
+}
+
+.creators-grid {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 30px;
+}
+
+.creator-card {
+  background: rgba(255, 255, 255, 0.05);
+  border-radius: 16px;
+  padding: 24px;
+  text-align: center;
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  position: relative;
+  transition: transform 0.3s, box-shadow 0.3s;
+}
+
+.creator-card:hover {
+  transform: translateY(-8px);
+  box-shadow: 0 12px 30px rgba(255, 140, 66, 0.2);
+}
+
+.creator-number {
+  position: absolute;
+  top: 16px;
+  left: 16px;
+  background: rgba(0, 0, 0, 0.6);
+  width: 32px;
+  height: 32px;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-weight: 600;
+}
+
+.creator-avatar {
+  width: 100px;
+  height: 100px;
+  margin: 0 auto 16px;
+  border-radius: 50%;
+  overflow: hidden;
+  border: 3px solid rgba(255, 140, 66, 0.3);
+}
+
+.creator-avatar img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.creator-card h3 {
+  font-size: 18px;
+  margin-bottom: 8px;
+}
+
+.creator-sales {
+  font-size: 14px;
+  color: rgba(255, 255, 255, 0.6);
+}
+
+.creator-sales span {
+  color: #ff8c42;
+  font-weight: 600;
+}
+
+/* How It Works Section */
+.how-it-works {
+  padding: 100px 0;
+  background: linear-gradient(180deg, rgba(20, 15, 10, 1) 0%, #000 100%);
+}
+
+.works-content {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  gap: 80px;
+}
+
+.work-item {
+  display: flex;
+  gap: 60px;
+  align-items: center;
+}
+
+.work-item h3{
+  text-align: center;
+}
+
+.work-image {
+  flex: 1;
+  position: relative;
+}
+
+.work-image img {
+  width: 100%;
+  height: auto;
+  max-width: 400px;
+}
+
+.star-icon-small {
+  position: absolute;
+  top: 20%;
+  right: 10%;
+  font-size: 48px;
+  color: #fff;
+}
+
+.work-text {
+  flex: 1;
+}
+
+.work-text h3 {
+  font-size: 36px;
+  margin-bottom: 20px;
+}
+
+.work-text p {
+  font-size: 16px;
+  color: rgba(255, 255, 255, 0.7);
+  line-height: 1.8;
+}
+
+/* Road Map Section */
+.roadmap {
+  padding: 100px 0;
+  background: linear-gradient(180deg, #000 0%, rgba(30, 20, 10, 0.8) 100%);
+}
+
+.timeline {
+  position: relative;
+  max-width: 1000px;
+  margin: 0 auto;
+  padding: 40px 0;
+}
+
+.timeline-line {
+  position: absolute;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 2px;
+  height: 100%;
+  background: linear-gradient(
+    180deg,
+    rgba(255, 140, 66, 0.3) 0%,
+    rgba(255, 140, 66, 0.8) 50%,
+    rgba(255, 140, 66, 0.3) 100%
+  );
+}
+
+.timeline-item {
+  display: flex;
+  margin-bottom: 60px;
+  position: relative;
+}
+
+.timeline-left {
+  justify-content: flex-end;
+}
+
+.timeline-left .timeline-content {
+  /* margin-right: 50px; */
+  text-align: right;
+}
+
+.timeline-right {
+  justify-content: flex-start;
+}
+
+.timeline-right .timeline-content {
+  /* margin-left: 50px; */
+  text-align: left;
+}
+
+.timeline-content {
+  /* flex: 0 0 45%; */
+  background: rgba(255, 255, 255, 0.05);
+  padding: 24px;
+  border-radius: 16px;
+  border: 2px solid rgba(255, 140, 66, 0.3);
+}
+
+.timeline-month {
+  font-size: 14px;
+  color: rgba(255, 255, 255, 0.6);
+  display: block;
+  margin-bottom: 8px;
+}
+
+.timeline-content h3 {
+  font-size: 24px;
+  margin-bottom: 12px;
+}
+
+.timeline-content p {
+  font-size: 14px;
+  color: rgba(255, 255, 255, 0.7);
+  line-height: 1.6;
+}
+
+.timeline-dot {
+  position: absolute;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 16px;
+  height: 16px;
+  background: #ff8c42;
+  border-radius: 50%;
+  border: 4px solid #000;
+  z-index: 1;
+}
+
+/* Join Community Section */
+.reveal-block {
+    padding: 80px 20px;
+    display: flex;
+    justify-content: center;
+    background: linear-gradient(#130d06, #171008);
+    background-size: 200% 200%;
+    animation: bgMove 10s ease infinite;
+}
+
+.reveal-container {
+    width: 100%;
+    max-width: 650px;
+    background: rgba(255, 255, 255, 0.08);
+    backdrop-filter: blur(14px);
+    padding: 40px 35px;
+    border-radius: 22px;
+    text-align: center;
+    box-shadow: 0 8px 25px rgba(0,0,0,0.4);
+    animation: floatUp 1.3s ease forwards;
+}
+
+.reveal-title {
+    color: white;
+    font-size: 32px;
+    margin-bottom: 25px;
+    font-weight: 700;
+    letter-spacing: 1px;
+}
+
+.toggle-btn {
+    background: rgba(255, 140, 66, 0.3);
+    padding: 12px 28px;
+    color: #fff;
+    border: none;
+    border-radius: 14px;
+    cursor: pointer;
+    font-size: 18px;
+    transition: 0.3s ease;
+    font-weight: 600;
+}
+
+.toggle-btn:hover {
+    background: rgba(255, 140, 66, 0.3);
+    transform: translateY(-2px);
+}
+
+/* скрытый блок текста */
+.hidden-text {
+    max-height: 0;
+    overflow: hidden;
+    opacity: 0;
+    transition: 0.5s ease;
+    margin-top: 0;
+}
+
+.hidden-text.open {
+    max-height: 300px;
+    opacity: 1;
+    margin-top: 20px;
+}
+
+.hidden-text p {
+    color: #dcdcdc;
+    font-size: 17px;
+    line-height: 1.6;
+}
+
+/* ANIMATIONS */
+@keyframes bgMove {
+    0% { background-position: 0% 50%; }
+    50% { background-position: 100% 50%; }
+    100% { background-position: 0% 50%; }
+}
+@keyframes floatUp {
+    from { opacity: 0; transform: translateY(35px); }
+    to { opacity: 1; transform: translateY(0); }
+}
+
+/* Общая стилизация Карточки Отзыва */
+.review-card {
+    max-width: 400px;
+    margin: 20px;
+    padding: 20px;
+    background: #333; /* Тёмный фон карточки */
+    border-radius: 12px;
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.5);
+    color: #f0f0f0; /* Светлый текст */
+}
+
+/* Стилизация Заголовка (Звёзды + Имя) */
+.review-header {
+    display: flex;
+    align-items: center;
+    margin-bottom: 15px;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+    padding-bottom: 10px;
+}
+
+/* Стилизация Звёзд */
+.rating-stars {
+    margin-right: 15px; /* Отступ между звёздами и именем */
+    font-size: 1.2em;
+    line-height: 1;
+}
+
+/* Цвет для Заполненной Звезды (Ваш Оранжевый Цвет) */
+.star.filled {
+    color: #ff8c42; 
+    /* Добавляем легкое свечение для привлекательности */
+    text-shadow: 0 0 5px rgba(255, 140, 66, 0.5);
+}
+
+.reviewer-name {
+    font-weight: 700;
+    color: #fff;
+    font-size: 1.1em;
+}
+
+/* Стилизация Текста Комментария */
+.review-text {
+    font-style: italic;
+    margin-bottom: 10px;
+}
+
+.review-date {
+    display: block;
+    font-size: 0.8em;
+    color: #aaa;
+}
+
+/* Footer */
+footer {
+  position: relative;
+  width: 100%;
+  background-color: black;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  gap: 35px;
+  padding: 40px 100px;
+}
+footer a {
+  text-decoration: none;
+  color: inherit;
+}
+.footer-logo {
+  padding: 35px 20px;
+  padding-top: 20px;
+  margin-right: 40px;
+}
+.footer-logo img {
+  width: 100px;
+  height: auto;
+}
+.footer-cont {
+  width: 100%;
+  display: flex;
+  color: white;
+  font-size: 26px;
+  gap: 80px;
+  padding-bottom: 35px;
+  border-bottom: 2px solid gray;
+  position: relative;
+}
+.foot-cont-one {
+  display: flex;
+  gap: 80px;
+}
+.copyright {
+  width: 100%;
+  text-align: center;
+  padding-top: 35px;
+  border-top: 2px solid gray;
+
+  color: rgb(168, 167, 167);
+}
+footer svg {
+  fill: rgba(255, 255, 255, 0.842);
+  stroke-miterlimit: 10;
+  stroke-width: 1px;
+  width: 40px;
+}
+.city {
+  position: relative;
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  font-size: 26px;
+}
+.cont-col {
+  display: flex;
+  flex-direction: column;
+}
+.cont-col:first-child {
+  color: rgb(168, 167, 167);
+}
+.cont-col:first-child a:first-child {
+  color: white;
+}
+.foot-cont-two {
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+}
+.foot-cont-two div {
+  align-items: center;
+  display: flex;
+  gap: 20px;
+}
+.foot-cont-three {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px;
+  color: white;
+  font-size: 20px;
+}
+.foot-cont-three p:hover {
+  cursor: pointer;
+  transform: scale(1.1);
+}
+.foot-cont-three p {
+  position: relative;
+  padding-right: 16px;
+}
+.foot-cont-three p::after {
+  content: "▼";
+  position: absolute;
+  right: 0;
+  top: 50%;
+  transform: translateY(-50%);
+  font-size: 12px;
+}
+.foot-cont-three p.active::after {
+  transform: translateY(-50%) rotate(180deg);
+}
+.foot-cont-three a {
+  display: none;
+}
+.social {
+  width: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: start;
+  gap: 10px;
+  border-bottom: 2px solid gray;
+}
+@media (max-width: 768px) and (min-width: 320px) {
+  footer {
+    align-items: center;
+    padding: 40px 40px;
+  }
+  .footer-logo {
+    margin-right: 0;
+  }
+  .social {
+    gap: 0;
+  }
+  .footer-logo img {
+    object-fit: cover;
+    width: 90px;
+  }
+  .footer-cont {
+    font-size: 18px;
+    flex-direction: column;
+  }
+  .foot-cont-two {
+    padding-top: 35px;
+    border-top: 2px solid gray;
+  }
+  .foot-cont-three {
+    flex-direction: column;
+  }
+}
+
+/* ================================================= */
+
+/* ===================================== */
+/* 3. Адаптация для мобильных устройств */
+/* ===================================== */
+@media (max-width: 768px) {
+    .about-content {
+        flex-direction: column; /* Элементы друг под другом */
+        padding: 10px;
+    }
+
+    .about-images,
+    .about-text {
+        width: 100%; /* Занимают всю ширину */
+        padding: 0;
+    }
+
+    .about-images {
+        margin-bottom: 30px;
+    }
+    
+    .about-image-item {
+        width: 600px; /* Сохраняем сетку 2x2, но уже на 100% ширины */
+        border-radius: 5px;
+    }
+
+    /* Отключаем 3D-эффект на мобильных, чтобы не мешал скроллингу */
+    .about-image-item:hover {
+        transform: scale(1.05) translateZ(0); /* Более мягкий эффект */
+        box-shadow: 0 10px 20px rgba(255, 107, 53, 0.5);
+    }
+}
+/* Mobile Responsive */
+@media (max-width: 768px) {
+    .hero-stats {
+        flex-direction: column; /* Элементы идут друг под другом */
+        padding: 20px 20px;
+        margin: 20px 10px; /* Меньшие отступы по краям */
+    }
+
+    .stat-item {
+        width: 100%; /* Занимает всю ширину контейнера */
+        padding: 15px 0; /* Вертикальные отступы */
+        border-right: none; /* Убираем вертикальные разделители */
+        border-bottom: 1px solid rgba(255, 255, 255, 0.1); /* Добавляем горизонтальные разделители */
+    }
+    
+    /* Убираем горизонтальный разделитель у последнего элемента */
+    .hero-stats .stat-item:last-of-type {
+        border-bottom: none;
+    }
+    
+    .stat-item h3 {
+        font-size: 2.2em; /* Чуть меньше шрифт на мобильных */
+    }
+    
+    .stat-item p {
+        font-size: 0.9em;
+    }
+    
+    /* Отключаем hover-эффект на мобильных, чтобы не мешал скроллингу */
+    .stat-item:hover {
+        transform: none;
+    }
+    
+    .star-icon {
+        top: 10px;
+        right: 10px;
+        font-size: 1.5em; /* Меньше размер иконки */
+    }
+}
+
+
+
+@media (max-width: 768px) {
+  .nav-menu {
+    position: fixed;
+    left: -100%;
+    top: 90px;
+    flex-direction: column;
+    background-color: rgba(0, 0, 0, 0.98);
+    width: 100%;
+    text-align: center;
+    transition: left 0.3s;
+    padding: 40px 0;
+    gap: 20px;
+    border-top: 1px solid rgba(255, 255, 255, 0.1);
+  }
+
+  .nav-menu.active {
+    left: 0;
+  }
+
+  .hamburger {
+    display: flex;
+  }
+
+  .hamburger.active span:nth-child(1) {
+    transform: rotate(45deg) translate(7px, 7px);
+  }
+
+  .hamburger.active span:nth-child(2) {
+    opacity: 0;
+  }
+
+  .hamburger.active span:nth-child(3) {
+    transform: rotate(-45deg) translate(7px, -7px);
+  }
+
+  .nav .btn-primary {
+    display: none;
+  }
+
+  .hero-content {
+    flex-direction: column;
+    gap: 40px;
+  }
+
+  .hero-text h1 {
+    font-size: 36px;
+  }
+
+  .hero-buttons {
+    flex-direction: column;
+    gap: 16px;
+  }
+
+  .hero-buttons button {
+    width: 100%;
+  }
+
+  .hero-stats {
+    flex-wrap: wrap;
+    gap: 30px;
+    padding: 30px 20px;
+  }
+
+  .stat-item h3 {
+    font-size: 28px;
+  }
+
+  .about-content {
+    flex-direction: column;
+  }
+
+  .about-images {
+    grid-template-columns: repeat(2, 1fr);
+    gap: 15px;
+  }
+
+  .collections-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .creators-grid {
+    grid-template-columns: repeat(2, 1fr);
+    gap: 20px;
+  }
+
+  .work-item,
+  .work-item-reverse {
+    flex-direction: column;
+    gap: 30px;
+  }
+
+  .work-text h3 {
+    font-size: 28px;
+  }
+
+  .timeline-line {
+    left: 20px;
+  }
+
+  .timeline-item,
+  .timeline-left,
+  .timeline-right {
+    justify-content: flex-start;
+  }
+
+  .timeline-left .timeline-content
+  .timeline-right .timeline-content {
+    /* margin-left: 50px; */
+    margin-right: 0;
+    text-align: left;
+  }
+
+  .timeline-dot {
+    left: 20px;
+  }
+
+  .newsletter-form {
+    flex-direction: column;
+    padding: 0 20px;
+  }
+
+  .section-title {
+    font-size: 36px;
+  }
+}
+
+@media (max-width: 480px) {
+  .hero-text h1 {
+    font-size: 28px;
+  }
+
+  .section-title {
+    font-size: 28px;
+  }
+
+  .collections-grid,
+  .creators-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .about-images {
+    grid-template-columns: 1fr;
+  }
+}
+
+
+
+@media (max-width: 768px) {
+  .item-3{
+    display: none;
+  }
+}
+
+.modal {
+  display: none;
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  height: 100vh;
+  background: rgba(0, 0, 0, 0.8);
+  justify-content: center;
+  align-items: center;
+  z-index: 9999;
+}
+
+.modal-content {
+  background: #fff;
+  border-radius: 15px;
+  color: #000;
+  padding: 30px 40px;
+  text-align: center;
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.3);
+  max-width: 400px;
+}
+
+.modal-content h2 {
+  margin-bottom: 20px;
+  font-size: 20px;
+}
+
+.buttons {
+  display: flex;
+  justify-content: center;
+  gap: 20px;
+}
+
+button {
+  padding: 10px 25px;
+  font-size: 16px;
+  border: none;
+  border-radius: 8px;
+  cursor: pointer;
+  transition: background 0.3s ease;
+}
+
+#yesBtn {
+  background: #4caf50;
+  color: #fff;
+}
+
+#yesBtn:hover {
+  background: #3e8e41;
+}
+
+#noBtn {
+  background: #f44336;
+  color: #fff;
+}
+
+#noBtn:hover {
+  background: #d32f2f;
+}
+/* Warning section */
+.warn {
+  font-size: 16px;
+  background-color: #000;
+  color: white;
+  width: 100%;
+  text-align: center;
+  padding: 10px 0;
+  font-weight: bold;
+}
