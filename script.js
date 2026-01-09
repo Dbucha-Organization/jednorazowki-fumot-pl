@@ -168,3 +168,18 @@ noBtn.addEventListener("click", () => {
   window.close();
   window.location.href = "https://www.google.pl";
 });
+
+// Age verification modal
+
+
+// Hide the top warning when the page is scrolled
+const warn = document.querySelector(".warn");
+if (warn) {
+  window.addEventListener("scroll", () => {
+    if (window.scrollY > 10) {
+      warn.style.display = "none";
+    } else {
+      warn.style.display = "";
+    }
+  });
+}

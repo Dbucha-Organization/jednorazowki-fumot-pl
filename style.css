@@ -1468,10 +1468,10 @@ button {
 /* Warning section */
 .warn {
   font-size: 16px;
-  background-color: #000;
+  /* background-color: #000; */
   color: white;
   width: 100%;
   text-align: center;
-  padding: 10px 0;
+  /* padding: 10px 0; */
   font-weight: bold;
 }
